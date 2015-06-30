@@ -1,1 +1,9 @@
 c:\users\josh\Development\github\TimeToRun\TimeToRun\bin\Debug\TimeToRun.exe.config
+c:\users\josh\Development\github\TimeToRun\TimeToRun\obj\Debug\TimeToRun.csprojResolveAssemblyReference.cache
+c:\users\josh\Development\github\TimeToRun\TimeToRun\obj\Debug\TimeToRun.TimeToRun.resources
+c:\users\josh\Development\github\TimeToRun\TimeToRun\obj\Debug\TimeToRun.Properties.Resources.resources
+c:\users\josh\Development\github\TimeToRun\TimeToRun\obj\Debug\TimeToRun.csproj.GenerateResource.Cache
+c:\users\josh\Development\github\TimeToRun\TimeToRun\bin\Debug\TimeToRun.exe
+c:\users\josh\Development\github\TimeToRun\TimeToRun\bin\Debug\TimeToRun.pdb
+c:\users\josh\Development\github\TimeToRun\TimeToRun\obj\Debug\TimeToRun.exe
+c:\users\josh\Development\github\TimeToRun\TimeToRun\obj\Debug\TimeToRun.pdb
