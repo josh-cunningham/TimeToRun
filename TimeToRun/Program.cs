@@ -11,7 +11,10 @@ namespace TimeToRun
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new TimeToRun());
+
+            TimeToRun timeToRun = new TimeToRun();
+            Application.ApplicationExit += timeToRun.OnApplicationExit;
+            Application.Run(timeToRun);
         }
     }
 }

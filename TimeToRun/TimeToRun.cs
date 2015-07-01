@@ -1,23 +1,17 @@
 ﻿namespace TimeToRun
 {
     using System;
-    using System.CodeDom.Compiler;
     using System.Collections.Generic;
     using System.Drawing;
-    using System.IO;
-    using Microsoft.CSharp;
-    using System.Reflection;
     using System.Text;
     using System.Threading.Tasks;
     using System.Windows.Forms;
 
     public partial class TimeToRun : Form
     {
-        private CSharpCodeProvider codeProvider;
-        
-        private CompilerParameters compilerParameters;
+        private TimeToRunCompiler compiler;
 
-        Dictionary<TextBox, string> defaultTextsDictionary;
+        private Dictionary<TextBox, string> defaultTextsDictionary;
 
         #region Constructors and Initialization methods
 
@@ -27,7 +21,8 @@
 
             this.InitializeInputTextBoxes();
 
-            this.InitializeCompiler();
+            compiler = new TimeToRunCompiler();
+            compiler.Initialize();
         }
 
         private void InitializeInputTextBoxes()
@@ -46,21 +41,12 @@
             }
         }
 
-        private void InitializeCompiler()
-        {
-            compilerParameters = new CompilerParameters();
-            compilerParameters.GenerateInMemory = true;
-            compilerParameters.TreatWarningsAsErrors = false;
-            compilerParameters.GenerateExecutable = false;
-            compilerParameters.CompilerOptions = "/optimize";
- 
-            string[] references = { "System.dll" };
-            compilerParameters.ReferencedAssemblies.AddRange(references);
-
-            codeProvider = new CSharpCodeProvider();
-        }
-
         #endregion
+
+        public void OnApplicationExit(object sender, EventArgs e)
+        {
+            compiler.Dispose();
+        }
 
         #region Get and Set text boxes
 
@@ -69,7 +55,7 @@
             StringBuilder compilableStringBuilder = new StringBuilder();
 
             compilableStringBuilder.Append(this.GetCompilableString(this.usingStatementsTextBox));
-            compilableStringBuilder.Append("static class TestProgram { public static void Main() {");
+            compilableStringBuilder.Append("namespace TestNamespace { static class TestProgram { public static void Main() {");
             compilableStringBuilder.Append("TestClass test = new TestClass(); test.Initialize(); test.RunCode();");
             compilableStringBuilder.Append("} } public class TestClass { ");
             compilableStringBuilder.Append(this.GetCompilableString(this.variablesTextBox));
@@ -77,7 +63,7 @@
             compilableStringBuilder.Append(this.GetCompilableString(this.initializationTextBox));
             compilableStringBuilder.Append("} public void RunCode() {");
             compilableStringBuilder.Append(this.GetCompilableString(this.inputTextBox));
-            compilableStringBuilder.Append("} }");
+            compilableStringBuilder.Append("} } }");
 
             return compilableStringBuilder.ToString();
         }
@@ -95,41 +81,13 @@
 
         #endregion
 
-        #region Compilation Methods
-
-        private CompilerResults Compile(string code)
-        {
-            return codeProvider.CompileAssemblyFromSource(this.compilerParameters, new string[] { code });
-        }
-
-        private string CompilationReport(CompilerResults results)
-        {
-            if (results.Errors.HasErrors)
-            {
-                StringBuilder errorMessage = new StringBuilder("Following Compilation Errors: \r\n");
-
-                foreach (var error in results.Errors)
-                {
-                    errorMessage.AppendLine(error.ToString());
-                }
-
-                return errorMessage.ToString();
-            }
-            else
-            {
-                return "Compilation Success!";
-            }
-        }
-
-        #endregion
-
         #region Form control events
 
         private void CompileBtn_Click(object sender, EventArgs e)
         {
-            var results = this.Compile(this.GetCompilableString());
+            var results = compiler.Compile(this.GetCompilableString());
 
-            this.OutputTextBox.Text = this.CompilationReport(results);
+            this.OutputTextBox.Text = compiler.CompilationReport(results);
         }
         
         private void InputTextBox_GotFocus(object sender, EventArgs e)
