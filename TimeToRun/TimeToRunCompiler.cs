@@ -12,8 +12,6 @@
     {
         private readonly string filename = "compiledCode";
 
-        private CSharpCodeProvider codeProvider;
-
         private CompilerParameters compilerParameters;
 
         private string AssemblyOutputPath
@@ -32,8 +30,6 @@
             compilerParameters.TreatWarningsAsErrors = false;
             compilerParameters.GenerateExecutable = false;
             compilerParameters.CompilerOptions = "/optimize";
-
-            codeProvider = new CSharpCodeProvider();
         }
 
         public void Dispose()
@@ -47,12 +43,18 @@
 
         public CompilerResults Compile(string code)
         {
+            CSharpCodeProvider codeProvider = new CSharpCodeProvider();
+
             if (!Directory.Exists(this.AssemblyOutputPath))
             {
                 Directory.CreateDirectory(this.AssemblyOutputPath);
             }
 
-            return codeProvider.CompileAssemblyFromSource(this.compilerParameters, new string[] { code });
+            CompilerResults results = codeProvider.CompileAssemblyFromSource(this.compilerParameters, new string[] { code });
+
+            codeProvider.Dispose();
+
+            return results;
         }
 
         public string CompilationReport(CompilerResults results)
@@ -74,25 +76,38 @@
             }
         }
 
-        public void RunCode(CompilerResults compilerResults)
+        public void RunCode(CompilerResults compilerResults, out string outputText)
         {
+            object testClass = null;
             Module module = compilerResults.CompiledAssembly.GetModules()[0];
             Type mt = null;
-            MethodInfo methInfo = null;
+            MethodInfo initializeMethodInfo = null;
+            MethodInfo runCodeMethodInfo = null;
+            outputText = string.Empty;
 
             if (module != null)
             {
-                mt = module.GetType("DynaCore.DynaCore");
+                mt = module.GetType("TestNamespace.TestClass");
             }
 
             if (mt != null)
             {
-                methInfo = mt.GetMethod("Main");
+                testClass = Activator.CreateInstance(mt);
+                initializeMethodInfo = mt.GetMethod("Initialize");
+                runCodeMethodInfo = mt.GetMethod("RunCode");
             }
 
-            if (methInfo != null)
+            if (initializeMethodInfo != null && runCodeMethodInfo != null)
             {
-                Console.WriteLine(methInfo.Invoke(null, new object[] { "here in dyna code" }));
+                try
+                {
+                    initializeMethodInfo.Invoke(testClass, new object[] { });
+                    runCodeMethodInfo.Invoke(testClass, new object[] { });
+                }
+                catch (Exception ex)
+                {
+                    outputText = "Exception Thrown during execution\r\n" + ex.InnerException.ToString();
+                }
             }
         }
     }

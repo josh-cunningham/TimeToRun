@@ -55,15 +55,33 @@
             StringBuilder compilableStringBuilder = new StringBuilder();
 
             compilableStringBuilder.Append(this.GetCompilableString(this.usingStatementsTextBox));
-            compilableStringBuilder.Append("namespace TestNamespace { static class TestProgram { public static void Main() {");
-            compilableStringBuilder.Append("TestClass test = new TestClass(); test.Initialize(); test.RunCode();");
-            compilableStringBuilder.Append("} } public class TestClass { ");
+
+            
+
+            
+            /*
+                "namespace TestNamespace 
+                 {
+                    static class TestProgram 
+                    {
+                        public static void Main() 
+                        {
+                            TestClass test = new TestClass();
+                            test.Initialize();
+                            test.RunCode();
+                        }
+                    }
+                    
+                    public class TestClass
+                    {"
+             */
+            compilableStringBuilder.Append(this.GetCompilableString(this.usingStatementsTextBox));
+            compilableStringBuilder.Append("namespace TestNamespace { static class TestProgram { public static void Main() { TestClass test = new TestClass(); test.Initialize(); test.RunCode(); } } public class TestClass {");
             compilableStringBuilder.Append(this.GetCompilableString(this.variablesTextBox));
-            compilableStringBuilder.Append("public void Initialize() {");
-            compilableStringBuilder.Append(this.GetCompilableString(this.initializationTextBox));
-            compilableStringBuilder.Append("} public void RunCode() {");
-            compilableStringBuilder.Append(this.GetCompilableString(this.inputTextBox));
-            compilableStringBuilder.Append("} } }");
+            compilableStringBuilder.Append("public void Initialize() {" + this.GetCompilableString(this.initializationTextBox) + "}");
+            compilableStringBuilder.Append("public void RunCode() {" + this.GetCompilableString(this.inputTextBox) + "}");
+            //close class, close namespace
+            compilableStringBuilder.Append("} }");
 
             return compilableStringBuilder.ToString();
         }
@@ -88,6 +106,15 @@
             var results = compiler.Compile(this.GetCompilableString());
 
             this.OutputTextBox.Text = compiler.CompilationReport(results);
+
+            string output = string.Empty;
+
+            this.compiler.RunCode(results, out output);
+
+            if (output != string.Empty)
+            {
+                this.OutputTextBox.Text = output;
+            }
         }
         
         private void InputTextBox_GotFocus(object sender, EventArgs e)

@@ -18,3 +18,29 @@ namespace TimeToRun
         }
     }
 }
+
+/*
+Using System;
+Using System;
+namespace TestNamespace
+{ 
+    static class TestProgram 
+    {
+        public static void Main() 
+        { 
+            TestClass test = new TestClass(); 
+            test.Initialize(); test.RunCode(); 
+        } 
+    } 
+    public class TestClass 
+    {
+        public void Initialize() 
+        {
+        }
+        public void RunCode() 
+        {
+            Console.WriteLine("Hello World");
+            Console.ReadKey();
+        }
+    } 
+}*/
