@@ -3,6 +3,7 @@
     using Microsoft.CSharp;
     using System;
     using System.CodeDom.Compiler;
+    using System.Collections.Generic;
     using System.Configuration;
     using System.IO;
     using System.Reflection;
@@ -10,7 +11,7 @@
 
     public class TimeToRunCompiler : IDisposable
     {
-        private readonly string filename = "compiledCode";
+        private readonly string filename = "TestNamespace.dll";
 
         private CompilerParameters compilerParameters;
 
@@ -18,7 +19,7 @@
         {
             get
             {
-                return Directory.GetCurrentDirectory() + ConfigurationManager.AppSettings["AssemblyOutputPath"];
+                return Directory.GetCurrentDirectory();
             }
         }
 
@@ -37,13 +38,16 @@
             if (Directory.Exists(this.AssemblyOutputPath))
             {
                 File.Delete(this.AssemblyOutputPath + "\\" + this.filename);
-                Directory.Delete(this.AssemblyOutputPath);
+                if (this.AssemblyOutputPath != Directory.GetCurrentDirectory())
+                {
+                    Directory.Delete(this.AssemblyOutputPath);
+                }
             }
         }
 
         public CompilerResults Compile(string code)
         {
-            CSharpCodeProvider codeProvider = new CSharpCodeProvider();
+            CSharpCodeProvider codeProvider = new CSharpCodeProvider(new Dictionary<String, String> { { "CompilerVersion", "v4.0" } });
 
             if (!Directory.Exists(this.AssemblyOutputPath))
             {
@@ -76,25 +80,36 @@
             }
         }
 
-        public void RunCode(CompilerResults compilerResults, out string outputText)
+        static readonly string path = @"C:\Users\Josh\Development\github\TimeToRun\TimeToRun\bin\Debug";
+
+        public static void LoadAssembly()
         {
-            object testClass = null;
-            Module module = compilerResults.CompiledAssembly.GetModules()[0];
-            Type mt = null;
+            Assembly assemblyReflected = Assembly.ReflectionOnlyLoadFrom(path + "\\" + "TestNamespace.dll");
+
+            foreach (AssemblyName ass in assemblyReflected.GetReferencedAssemblies())
+            {
+                Assembly.Load(ass.FullName);
+            }
+
+            Assembly assembly = Assembly.Load(assemblyReflected.FullName);
+            Module module = assembly.GetModule("TestNamespace.dll");
+
+            Type testType = null;
             MethodInfo initializeMethodInfo = null;
             MethodInfo runCodeMethodInfo = null;
-            outputText = string.Empty;
+
+            object testClass = null;
 
             if (module != null)
             {
-                mt = module.GetType("TestNamespace.TestClass");
+                testType = module.GetType("TestNamespace.TestClass");
             }
 
-            if (mt != null)
+            if (testType != null && testType.Assembly != null)
             {
-                testClass = Activator.CreateInstance(mt);
-                initializeMethodInfo = mt.GetMethod("Initialize");
-                runCodeMethodInfo = mt.GetMethod("RunCode");
+                initializeMethodInfo = testType.GetMethod("Initialize");
+                runCodeMethodInfo = testType.GetMethod("Run");
+                testClass = AppDomain.CurrentDomain.CreateInstanceAndUnwrap(testType.Assembly.FullName, "TestNamespace.TestClass");
             }
 
             if (initializeMethodInfo != null && runCodeMethodInfo != null)
@@ -103,12 +118,26 @@
                 {
                     initializeMethodInfo.Invoke(testClass, new object[] { });
                     runCodeMethodInfo.Invoke(testClass, new object[] { });
+
+                    File.AppendAllLines(path + "\\Results.txt", new string[] { "Run Complete" });
                 }
                 catch (Exception ex)
                 {
-                    outputText = "Exception Thrown during execution\r\n" + ex.InnerException.ToString();
+                    File.AppendAllLines(path + "\\Results.txt", new string[] { "Run Failed" });
                 }
             }
+        }
+        
+        public void RunCode()
+        {
+            AppDomainSetup domainInfo = new AppDomainSetup();
+            domainInfo.PrivateBinPath = this.AssemblyOutputPath;
+
+            AppDomain dom = AppDomain.CreateDomain("dom", null, domainInfo);
+
+            dom.DoCallBack(LoadAssembly);
+
+            AppDomain.Unload(dom);
         }
     }
 }

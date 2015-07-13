@@ -54,6 +54,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TimeToRunCompiler.cs" />
+    <Compile Include="Types\CompilableString.cs" />
+    <Compile Include="Types\InputTextbox.cs" />
     <EmbeddedResource Include="TimeToRun.resx">
       <DependentUpon>TimeToRun.cs</DependentUpon>
     </EmbeddedResource>

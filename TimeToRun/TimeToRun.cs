@@ -3,15 +3,17 @@
     using System;
     using System.Collections.Generic;
     using System.Drawing;
+    using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
     using System.Windows.Forms;
+    using Types;
 
     public partial class TimeToRun : Form
     {
         private TimeToRunCompiler compiler;
 
-        private Dictionary<TextBox, string> defaultTextsDictionary;
+        private InputTextBox[] textBoxes;
 
         #region Constructors and Initialization methods
 
@@ -27,15 +29,17 @@
 
         private void InitializeInputTextBoxes()
         {
-            defaultTextsDictionary = new Dictionary<TextBox, string>();
-            defaultTextsDictionary.Add(this.usingStatementsTextBox, "Enter 'Using' statements here\r\n\r\nNote: If unchanged, this text will not be compiled");
-            defaultTextsDictionary.Add(this.variablesTextBox, "Declare you variables here\r\n\r\nNote: If unchanged, this text will not be compiled");
-            defaultTextsDictionary.Add(this.initializationTextBox, "Initialise your variables here\r\nInclude any other code that you don't want to be timed\r\n\r\nNote: If unchanged, this text will not be compiled");
-            defaultTextsDictionary.Add(this.inputTextBox, "Enter the code you want to be timed here\r\n\r\nNote: If unchanged, this text will not be compiled");
-
-            foreach (TextBox textBox in this.defaultTextsDictionary.Keys)
+            textBoxes = new InputTextBox[]
             {
-                this.SetToDefaultText(textBox);
+                new InputTextBox(this.usingStatementsTextBox, "Enter 'Using' statements here\r\n\r\nNote: If unchanged, this text will not be compiled"),
+                new InputTextBox(this.variablesTextBox, "Declare you variables here\r\n\r\nNote: If unchanged, this text will not be compiled"),
+                new InputTextBox(this.initializationTextBox, "Initialise your variables here\r\nInclude any other code that you don't want to be timed\r\n\r\nNote: If unchanged, this text will not be compiled"),
+                new InputTextBox(this.inputTextBox, "Enter the code you want to be timed here\r\n\r\nNote: If unchanged, this text will not be compiled")
+            };
+
+            foreach (TextBox textBox in this.textBoxes.Select<InputTextBox, TextBox>(itb => itb.TextBox))
+            {
+                textBox.Text = this.GetDefaultText(textBox);
                 textBox.GotFocus += this.InputTextBox_GotFocus;
                 textBox.LostFocus += this.InputTextBox_LostFocus;
             }
@@ -52,49 +56,34 @@
 
         private string GetCompilableString()
         {
-            StringBuilder compilableStringBuilder = new StringBuilder();
-
-            compilableStringBuilder.Append(this.GetCompilableString(this.usingStatementsTextBox));
-
-            
-
-            
-            /*
-                "namespace TestNamespace 
-                 {
-                    static class TestProgram 
-                    {
-                        public static void Main() 
-                        {
-                            TestClass test = new TestClass();
-                            test.Initialize();
-                            test.RunCode();
-                        }
-                    }
-                    
-                    public class TestClass
-                    {"
-             */
-            compilableStringBuilder.Append(this.GetCompilableString(this.usingStatementsTextBox));
-            compilableStringBuilder.Append("namespace TestNamespace { static class TestProgram { public static void Main() { TestClass test = new TestClass(); test.Initialize(); test.RunCode(); } } public class TestClass {");
-            compilableStringBuilder.Append(this.GetCompilableString(this.variablesTextBox));
-            compilableStringBuilder.Append("public void Initialize() {" + this.GetCompilableString(this.initializationTextBox) + "}");
-            compilableStringBuilder.Append("public void RunCode() {" + this.GetCompilableString(this.inputTextBox) + "}");
-            //close class, close namespace
-            compilableStringBuilder.Append("} }");
-
-            return compilableStringBuilder.ToString();
+            CompilableString compilableString =  new CompilableString(this.GetCompilableString(this.usingStatementsTextBox),
+                                                                      this.GetCompilableString(this.variablesTextBox),
+                                                                      this.GetCompilableString(this.usingStatementsTextBox),
+                                                                      this.GetCompilableString(this.usingStatementsTextBox));
+            return compilableString.ToString();
         }
 
         private string GetCompilableString(TextBox textBox)
         {
-            return (textBox.Text != this.defaultTextsDictionary[textBox]) ? textBox.Text : string.Empty;
+            return (!this.ContainsDefaultText(textBox)) ? textBox.Text : string.Empty;
         }
 
-        private void SetToDefaultText(TextBox textBox)
+        private bool ContainsDefaultText(TextBox textBox)
         {
-            textBox.Text = this.defaultTextsDictionary[textBox];
-            textBox.ForeColor = Color.Gray;
+            return textBox.Text == this.GetDefaultText(textBox);
+        }
+
+        private string GetDefaultText(TextBox textBox)
+        {
+            try
+            {
+                return textBoxes.Where<InputTextBox>(tb => tb == textBox).First().DefaultText;
+            }
+            catch (InvalidOperationException ex)
+            {
+                //this should never happen
+                return string.Empty;
+            }
         }
 
         #endregion
@@ -107,14 +96,7 @@
 
             this.OutputTextBox.Text = compiler.CompilationReport(results);
 
-            string output = string.Empty;
-
-            this.compiler.RunCode(results, out output);
-
-            if (output != string.Empty)
-            {
-                this.OutputTextBox.Text = output;
-            }
+            this.compiler.RunCode();
         }
         
         private void InputTextBox_GotFocus(object sender, EventArgs e)
@@ -122,7 +104,7 @@
             TextBox textBox = sender as TextBox;
 
             if (textBox is TextBox
-                && textBox.Text == this.defaultTextsDictionary[textBox])
+                && this.ContainsDefaultText(textBox))
             {
                 textBox.Text = string.Empty;
                 textBox.ForeColor = Color.Black;
@@ -136,7 +118,8 @@
             if (textBox != null
                 && string.IsNullOrWhiteSpace(textBox.Text))
             {
-                SetToDefaultText(textBox);
+                textBox.Text = this.GetDefaultText(textBox);
+                textBox.ForeColor = Color.Gray;
             }
         }
 
