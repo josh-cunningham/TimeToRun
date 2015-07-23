@@ -4,22 +4,33 @@
 
     public class CompilableString
     {
-        private readonly string skeletonCode = @"namespace TestNamespace 
-                                                {
-                                                    {0}
-                                                    public class TestClass
-                                                    {
-                                                        {1}
-                                                        public void Initialize() 
-                                                        {
-                                                            {2}
-                                                        } 
-                                                        public void Run() 
-                                                        {
-                                                            {3}
-                                                        } 
-                                                    } 
-                                                }";
+        private readonly string skeletonCode =
+            // This looks stupid in the source code but allows the verbatim string to better display
+            // spacing in text boxes (which is currently being used for debugging purposes)
+@"namespace TestNamespace 
+{
+    {0}
+    public class TestClass
+    {
+        {1}
+        public void Initialize() 
+        {
+            {2}
+        } 
+        public void Run() 
+        {
+            {3}
+/*
+            bool wait = true;
+            System.DateTime waitUntil = System.DateTime.Now.AddSeconds(1);
+            while (wait)
+            {
+                if (System.DateTime.Now > waitUntil) wait = false;
+            }
+*/
+        }
+    } 
+}";
 
         private string usingStatements; //{0} in skeletonCode
         private string variableDeclarations; //{1} in skeletonCode

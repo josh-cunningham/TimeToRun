@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Drawing;
+    using System.IO;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
@@ -11,7 +12,9 @@
 
     public partial class TimeToRun : Form
     {
-        private TimeToRunCompiler compiler;
+        public static List<string> CreatedDllList = new List<string>();
+
+        private TTRCompiler compiler;
 
         private InputTextBox[] textBoxes;
 
@@ -23,25 +26,24 @@
 
             this.InitializeInputTextBoxes();
 
-            compiler = new TimeToRunCompiler();
-            compiler.Initialize();
+            this.compiler = new TTRCompiler();
         }
 
         private void InitializeInputTextBoxes()
         {
-            textBoxes = new InputTextBox[]
+            this.textBoxes = new InputTextBox[]
             {
-                new InputTextBox(this.usingStatementsTextBox, "Enter 'Using' statements here\r\n\r\nNote: If unchanged, this text will not be compiled"),
-                new InputTextBox(this.variablesTextBox, "Declare you variables here\r\n\r\nNote: If unchanged, this text will not be compiled"),
-                new InputTextBox(this.initializationTextBox, "Initialise your variables here\r\nInclude any other code that you don't want to be timed\r\n\r\nNote: If unchanged, this text will not be compiled"),
-                new InputTextBox(this.inputTextBox, "Enter the code you want to be timed here\r\n\r\nNote: If unchanged, this text will not be compiled")
+                new InputTextBox(this.usingStatementsText, "Enter 'Using' statements here\r\n\r\nNote: If unchanged, this text will not be compiled"),
+                new InputTextBox(this.variablesText, "Declare you variables here\r\n\r\nNote: If unchanged, this text will not be compiled"),
+                new InputTextBox(this.initializationText, "Initialise your variables here\r\nInclude any other code that you don't want to be timed\r\n\r\nNote: If unchanged, this text will not be compiled"),
+                new InputTextBox(this.inputText, "Enter the code you want to be timed here\r\n\r\nNote: If unchanged, this text will not be compiled")
             };
 
             foreach (TextBox textBox in this.textBoxes.Select<InputTextBox, TextBox>(itb => itb.TextBox))
             {
                 textBox.Text = this.GetDefaultText(textBox);
-                textBox.GotFocus += this.InputTextBox_GotFocus;
-                textBox.LostFocus += this.InputTextBox_LostFocus;
+                textBox.GotFocus += this.InputText_GotFocus;
+                textBox.LostFocus += this.InputText_LostFocus;
             }
         }
 
@@ -49,17 +51,17 @@
 
         public void OnApplicationExit(object sender, EventArgs e)
         {
-            compiler.Dispose();
+            Directory.Delete(TTRCompiler.AssemblyOutputPath, true);
         }
 
         #region Get and Set text boxes
 
         private string GetCompilableString()
         {
-            CompilableString compilableString =  new CompilableString(this.GetCompilableString(this.usingStatementsTextBox),
-                                                                      this.GetCompilableString(this.variablesTextBox),
-                                                                      this.GetCompilableString(this.usingStatementsTextBox),
-                                                                      this.GetCompilableString(this.usingStatementsTextBox));
+            CompilableString compilableString =  new CompilableString(this.GetCompilableString(this.usingStatementsText),
+                                                                      this.GetCompilableString(this.variablesText),
+                                                                      this.GetCompilableString(this.usingStatementsText),
+                                                                      this.GetCompilableString(this.usingStatementsText));
             return compilableString.ToString();
         }
 
@@ -90,16 +92,28 @@
 
         #region Form control events
 
-        private void CompileBtn_Click(object sender, EventArgs e)
+        private void CompileButton_Click(object sender, EventArgs e)
         {
-            var results = compiler.Compile(this.GetCompilableString());
+            var sourceCode = this.GetCompilableString();
 
-            this.OutputTextBox.Text = compiler.CompilationReport(results);
+            var results = this.compiler.Compile(sourceCode);
 
-            this.compiler.RunCode();
+            this.sourceCodeText.Text = sourceCode;
+
+            this.compiler.CompileReport(results);
+
+            this.UpdateOutputLog();
+        }
+
+
+        private void RunButton_Click(object sender, EventArgs e)
+        {
+            new TTRCodeRunner().TimeLastCompilation();
+
+            this.UpdateOutputLog();
         }
         
-        private void InputTextBox_GotFocus(object sender, EventArgs e)
+        private void InputText_GotFocus(object sender, EventArgs e)
         {
             TextBox textBox = sender as TextBox;
 
@@ -111,7 +125,7 @@
             }
         }
 
-        private void InputTextBox_LostFocus(object sender, EventArgs e)
+        private void InputText_LostFocus(object sender, EventArgs e)
         {
             TextBox textBox = sender as TextBox;
 
@@ -124,6 +138,20 @@
         }
 
         #endregion
+
+        private void UpdateOutputLog()
+        {
+            StringBuilder output = new StringBuilder(this.OutputText.Text);
+
+            foreach (string message in Log.Instance.GetMessages())
+            {
+                output.AppendLine(message);
+            }
+
+            Log.Instance.Clear();
+
+            this.OutputText.Text = output.ToString();
+        }
 
     }
 }

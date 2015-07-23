@@ -7,3 +7,4 @@ C:\Users\Josh\Development\github\TimeToRun\TimeToRun\obj\Debug\TimeToRun.csproj.
 C:\Users\Josh\Development\github\TimeToRun\TimeToRun\obj\Debug\TimeToRun.exe
 C:\Users\Josh\Development\github\TimeToRun\TimeToRun\obj\Debug\TimeToRun.pdb
 C:\Users\Josh\Development\github\TimeToRun\TimeToRun\obj\Debug\TimeToRun.csprojResolveAssemblyReference.cache
+C:\Users\Josh\Development\github\TimeToRun\TimeToRun\bin\Debug\TTRLoader.pdb

@@ -28,101 +28,132 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.inputTextBox = new System.Windows.Forms.TextBox();
-            this.OutputTextBox = new System.Windows.Forms.TextBox();
-            this.CompileBtn = new System.Windows.Forms.Button();
-            this.usingStatementsTextBox = new System.Windows.Forms.TextBox();
+            this.inputText = new System.Windows.Forms.TextBox();
+            this.OutputText = new System.Windows.Forms.TextBox();
+            this.compileButton = new System.Windows.Forms.Button();
+            this.usingStatementsText = new System.Windows.Forms.TextBox();
             this.codeToTimeGroupBox = new System.Windows.Forms.GroupBox();
             this.initializationGroupBox = new System.Windows.Forms.GroupBox();
-            this.initializationTextBox = new System.Windows.Forms.TextBox();
-            this.variablesTextBox = new System.Windows.Forms.TextBox();
+            this.initializationText = new System.Windows.Forms.TextBox();
+            this.variablesText = new System.Windows.Forms.TextBox();
+            this.runButton = new System.Windows.Forms.Button();
+            this.sourceCodeText = new System.Windows.Forms.TextBox();
             this.codeToTimeGroupBox.SuspendLayout();
             this.initializationGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
-            // inputTextBox
+            // inputText
             // 
-            this.inputTextBox.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.inputTextBox.Location = new System.Drawing.Point(6, 19);
-            this.inputTextBox.Multiline = true;
-            this.inputTextBox.Name = "inputTextBox";
-            this.inputTextBox.Size = new System.Drawing.Size(326, 183);
-            this.inputTextBox.TabIndex = 0;
+            this.inputText.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.inputText.Location = new System.Drawing.Point(6, 19);
+            this.inputText.Multiline = true;
+            this.inputText.Name = "inputText";
+            this.inputText.Size = new System.Drawing.Size(233, 231);
+            this.inputText.TabIndex = 0;
+            this.inputText.Text = "Code to time";
             // 
-            // OutputTextBox
+            // OutputText
             // 
-            this.OutputTextBox.Enabled = false;
-            this.OutputTextBox.Location = new System.Drawing.Point(338, 19);
-            this.OutputTextBox.Multiline = true;
-            this.OutputTextBox.Name = "OutputTextBox";
-            this.OutputTextBox.Size = new System.Drawing.Size(332, 183);
-            this.OutputTextBox.TabIndex = 1;
+            this.OutputText.BackColor = System.Drawing.SystemColors.Control;
+            this.OutputText.Enabled = false;
+            this.OutputText.Location = new System.Drawing.Point(516, 31);
+            this.OutputText.Multiline = true;
+            this.OutputText.Name = "OutputText";
+            this.OutputText.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.OutputText.Size = new System.Drawing.Size(233, 231);
+            this.OutputText.TabIndex = 1;
             // 
-            // CompileBtn
+            // compileButton
             // 
-            this.CompileBtn.Location = new System.Drawing.Point(18, 400);
-            this.CompileBtn.Name = "CompileBtn";
-            this.CompileBtn.Size = new System.Drawing.Size(664, 45);
-            this.CompileBtn.TabIndex = 2;
-            this.CompileBtn.Text = "Compile";
-            this.CompileBtn.UseVisualStyleBackColor = true;
-            this.CompileBtn.Click += new System.EventHandler(this.CompileBtn_Click);
+            this.compileButton.Location = new System.Drawing.Point(18, 279);
+            this.compileButton.Name = "compileButton";
+            this.compileButton.Size = new System.Drawing.Size(368, 45);
+            this.compileButton.TabIndex = 2;
+            this.compileButton.Text = "Compile";
+            this.compileButton.UseVisualStyleBackColor = true;
+            this.compileButton.Click += new System.EventHandler(this.CompileButton_Click);
             // 
-            // usingStatementsTextBox
+            // usingStatementsText
             // 
-            this.usingStatementsTextBox.Location = new System.Drawing.Point(6, 19);
-            this.usingStatementsTextBox.Multiline = true;
-            this.usingStatementsTextBox.Name = "usingStatementsTextBox";
-            this.usingStatementsTextBox.Size = new System.Drawing.Size(205, 139);
-            this.usingStatementsTextBox.TabIndex = 3;
+            this.usingStatementsText.Location = new System.Drawing.Point(6, 19);
+            this.usingStatementsText.Multiline = true;
+            this.usingStatementsText.Name = "usingStatementsText";
+            this.usingStatementsText.Size = new System.Drawing.Size(233, 73);
+            this.usingStatementsText.TabIndex = 3;
+            this.usingStatementsText.Text = "Using Statements";
             // 
             // codeToTimeGroupBox
             // 
-            this.codeToTimeGroupBox.Controls.Add(this.OutputTextBox);
-            this.codeToTimeGroupBox.Controls.Add(this.inputTextBox);
-            this.codeToTimeGroupBox.Location = new System.Drawing.Point(12, 186);
+            this.codeToTimeGroupBox.Controls.Add(this.inputText);
+            this.codeToTimeGroupBox.Location = new System.Drawing.Point(263, 12);
             this.codeToTimeGroupBox.Name = "codeToTimeGroupBox";
-            this.codeToTimeGroupBox.Size = new System.Drawing.Size(676, 208);
+            this.codeToTimeGroupBox.Size = new System.Drawing.Size(247, 261);
             this.codeToTimeGroupBox.TabIndex = 4;
             this.codeToTimeGroupBox.TabStop = false;
             this.codeToTimeGroupBox.Text = "Code To Time";
             // 
             // initializationGroupBox
             // 
-            this.initializationGroupBox.Controls.Add(this.initializationTextBox);
-            this.initializationGroupBox.Controls.Add(this.variablesTextBox);
-            this.initializationGroupBox.Controls.Add(this.usingStatementsTextBox);
+            this.initializationGroupBox.Controls.Add(this.initializationText);
+            this.initializationGroupBox.Controls.Add(this.variablesText);
+            this.initializationGroupBox.Controls.Add(this.usingStatementsText);
             this.initializationGroupBox.Location = new System.Drawing.Point(12, 12);
             this.initializationGroupBox.Name = "initializationGroupBox";
-            this.initializationGroupBox.Size = new System.Drawing.Size(676, 164);
+            this.initializationGroupBox.Size = new System.Drawing.Size(245, 261);
             this.initializationGroupBox.TabIndex = 5;
             this.initializationGroupBox.TabStop = false;
             this.initializationGroupBox.Text = "Code Initialization";
             // 
-            // initializationTextBox
+            // initializationText
             // 
-            this.initializationTextBox.Location = new System.Drawing.Point(459, 19);
-            this.initializationTextBox.Multiline = true;
-            this.initializationTextBox.Name = "initializationTextBox";
-            this.initializationTextBox.Size = new System.Drawing.Size(211, 139);
-            this.initializationTextBox.TabIndex = 5;
+            this.initializationText.Location = new System.Drawing.Point(6, 177);
+            this.initializationText.Multiline = true;
+            this.initializationText.Name = "initializationText";
+            this.initializationText.Size = new System.Drawing.Size(233, 73);
+            this.initializationText.TabIndex = 5;
+            this.initializationText.Text = "Variable Initialization";
             // 
-            // variablesTextBox
+            // variablesText
             // 
-            this.variablesTextBox.Location = new System.Drawing.Point(217, 19);
-            this.variablesTextBox.Multiline = true;
-            this.variablesTextBox.Name = "variablesTextBox";
-            this.variablesTextBox.Size = new System.Drawing.Size(236, 139);
-            this.variablesTextBox.TabIndex = 4;
+            this.variablesText.Location = new System.Drawing.Point(6, 98);
+            this.variablesText.Multiline = true;
+            this.variablesText.Name = "variablesText";
+            this.variablesText.Size = new System.Drawing.Size(233, 73);
+            this.variablesText.TabIndex = 4;
+            this.variablesText.Text = "Variable Declaration";
+            // 
+            // runButton
+            // 
+            this.runButton.Location = new System.Drawing.Point(392, 279);
+            this.runButton.Name = "runButton";
+            this.runButton.Size = new System.Drawing.Size(357, 45);
+            this.runButton.TabIndex = 6;
+            this.runButton.Text = "Run";
+            this.runButton.UseVisualStyleBackColor = true;
+            this.runButton.Click += new System.EventHandler(this.RunButton_Click);
+            // 
+            // sourceCodeText
+            // 
+            this.sourceCodeText.BackColor = System.Drawing.SystemColors.Control;
+            this.sourceCodeText.Location = new System.Drawing.Point(18, 330);
+            this.sourceCodeText.Multiline = true;
+            this.sourceCodeText.Name = "sourceCodeText";
+            this.sourceCodeText.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.sourceCodeText.Size = new System.Drawing.Size(368, 217);
+            this.sourceCodeText.TabIndex = 7;
             // 
             // TimeToRun
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(700, 457);
+            this.BackColor = System.Drawing.Color.Thistle;
+            this.ClientSize = new System.Drawing.Size(762, 568);
+            this.Controls.Add(this.sourceCodeText);
+            this.Controls.Add(this.runButton);
+            this.Controls.Add(this.OutputText);
             this.Controls.Add(this.initializationGroupBox);
             this.Controls.Add(this.codeToTimeGroupBox);
-            this.Controls.Add(this.CompileBtn);
+            this.Controls.Add(this.compileButton);
             this.Name = "TimeToRun";
             this.Text = "Time To Run C# v0.002";
             this.codeToTimeGroupBox.ResumeLayout(false);
@@ -130,19 +161,22 @@
             this.initializationGroupBox.ResumeLayout(false);
             this.initializationGroupBox.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TextBox inputTextBox;
-        private System.Windows.Forms.TextBox OutputTextBox;
-        private System.Windows.Forms.Button CompileBtn;
-        private System.Windows.Forms.TextBox usingStatementsTextBox;
+        private System.Windows.Forms.TextBox inputText;
+        private System.Windows.Forms.TextBox OutputText;
+        private System.Windows.Forms.Button compileButton;
+        private System.Windows.Forms.TextBox usingStatementsText;
         private System.Windows.Forms.GroupBox codeToTimeGroupBox;
         private System.Windows.Forms.GroupBox initializationGroupBox;
-        private System.Windows.Forms.TextBox initializationTextBox;
-        private System.Windows.Forms.TextBox variablesTextBox;
+        private System.Windows.Forms.TextBox initializationText;
+        private System.Windows.Forms.TextBox variablesText;
+        private System.Windows.Forms.Button runButton;
+        private System.Windows.Forms.TextBox sourceCodeText;
     }
 }
 

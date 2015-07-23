@@ -1,0 +1,7 @@
+C:\Users\Josh\Development\github\TimeToRun\TTRLoader\bin\Debug\TTRLoader.dll
+C:\Users\Josh\Development\github\TimeToRun\TTRLoader\bin\Debug\TTRLoader.pdb
+C:\Users\Josh\Development\github\TimeToRun\TTRLoader\obj\Debug\TTRLoader.dll
+C:\Users\Josh\Development\github\TimeToRun\TTRLoader\obj\Debug\TTRLoader.pdb
+C:\Users\Josh\Development\github\TimeToRun\TimeToRun\bin\Debug\TTRLoader.dll
+C:\Users\Josh\Development\github\TimeToRun\TimeToRun\bin\Debug\TTRLoader.pdb
+C:\Users\Josh\Development\github\TimeToRun\TTRLoader\obj\Debug\TTRLoader.csprojResolveAssemblyReference.cache

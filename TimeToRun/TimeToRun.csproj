@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Log.cs" />
     <Compile Include="TimeToRun.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -53,7 +54,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TimeToRunCompiler.cs" />
+    <Compile Include="TTRCodeRunner.cs" />
+    <Compile Include="TTRCompiler.cs" />
+    <Compile Include="TTRExtensionMethods.cs" />
     <Compile Include="Types\CompilableString.cs" />
     <Compile Include="Types\InputTextbox.cs" />
     <EmbeddedResource Include="TimeToRun.resx">
@@ -80,6 +83,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TTRLoader\TTRLoader.csproj">
+      <Project>{0783c046-b365-4c80-8fd2-d533955f74a9}</Project>
+      <Name>TTRLoader</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
