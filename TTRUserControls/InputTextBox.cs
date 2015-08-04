@@ -55,14 +55,14 @@
             this.InputText_LostFocus(this, null);
         }
 
+        public void SetToDefaultText()
+        {
+            this.textInput.Text = this.GetDefaultText();
+        }
+
         protected bool ContainsDefaultText()
         {
             return this.TextInput.Text == this.GetDefaultText();
-        }
-
-        protected void SetDefaultText()
-        {
-            this.textInput.Text = this.GetDefaultText();
         }
 
         protected virtual string GetDefaultText()
@@ -83,7 +83,7 @@
         {
             if (string.IsNullOrWhiteSpace(this.textInput.Text))
             {
-                this.SetDefaultText();
+                this.SetToDefaultText();
             }
         }
     }

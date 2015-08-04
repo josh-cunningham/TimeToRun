@@ -2,7 +2,9 @@
 {
     using System;
     using System.IO;
+    using System.Runtime.Serialization.Formatters.Binary;
     using System.Text;
+    using System.Windows.Forms;
     using System.Xml.Serialization;
 
     [Serializable]
@@ -103,13 +105,23 @@
             return sb.ToString();
         }
 
-        public void SaveTo(string filename)
+        public void SaveAs()
+        {
+            SaveFileDialog saveDialog = new SaveFileDialog();
+
+            if (saveDialog.ShowDialog() == DialogResult.OK)
+            {
+                this.SaveAs(saveDialog.FileName);
+            }
+        }
+
+        public void SaveAs(string filename)
         {
             string path = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "TTRCode", filename + ".ttrx");
 
             using (FileStream fs = new FileStream(path, FileMode.Create))
             {
-                var binaryFormatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                var binaryFormatter = new BinaryFormatter();
                 binaryFormatter.Serialize(fs, this);
             }
         }
@@ -118,15 +130,15 @@
         {
             codeSnippet = null;
 
-            System.Windows.Forms.OpenFileDialog fileDialog = new System.Windows.Forms.OpenFileDialog();
+            OpenFileDialog fileDialog = new OpenFileDialog();
 
-            if (fileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (fileDialog.ShowDialog() == DialogResult.OK)
             {
                 try
                 {
                     using (Stream stream = fileDialog.OpenFile())
                     {
-                        var binaryFormatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                        var binaryFormatter = new BinaryFormatter();
                         codeSnippet = (CodeSnippet)binaryFormatter.Deserialize(stream);
                         return true;
                     }
@@ -143,7 +155,7 @@
         {
             using (Stream stream = File.Open(path, FileMode.Open))
             {
-                var binaryFormatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                var binaryFormatter = new BinaryFormatter();
                 return (CodeSnippet)binaryFormatter.Deserialize(stream);
             }
         }
