@@ -1,0 +1,6 @@
+C:\Users\Josh\Development\github\TimeToRun\TTRUserControls\bin\Debug\TTRUserControls.dll
+C:\Users\Josh\Development\github\TimeToRun\TTRUserControls\bin\Debug\TTRUserControls.pdb
+C:\Users\Josh\Development\github\TimeToRun\TTRUserControls\obj\Debug\TTRUserControls.csproj.GenerateResource.Cache
+C:\Users\Josh\Development\github\TimeToRun\TTRUserControls\obj\Debug\TTRUserControls.dll
+C:\Users\Josh\Development\github\TimeToRun\TTRUserControls\obj\Debug\TTRUserControls.pdb
+C:\Users\Josh\Development\github\TimeToRun\TTRUserControls\obj\Debug\TTR.UserControls.InputTextBox.resources

@@ -1,4 +1,4 @@
-﻿namespace TimeToRun
+﻿namespace TTR.Logging
 {
     using System;
     using System.Collections.Generic;

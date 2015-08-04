@@ -1,4 +1,4 @@
-﻿namespace TimeToRun
+﻿namespace TTR
 {
     using System;
     using System.Collections.Generic;
@@ -8,15 +8,20 @@
     using System.Text;
     using System.Threading.Tasks;
     using System.Windows.Forms;
-    using Types;
+    using TTR.Code;
+    using TTR.Common;
+    using TTR.Logging;
 
+    /// <summary>
+    /// TimeToRun Form
+    /// </summary>
     public partial class TimeToRun : Form
     {
-        public static List<string> CreatedDllList = new List<string>();
+        public List<string> CreatedDllList = new List<string>();
 
         private TTRCompiler compiler;
 
-        private InputTextBox[] textBoxes;
+        private TTRCodeRunner codeRunner;
 
         #region Constructors and Initialization methods
 
@@ -24,68 +29,50 @@
         {
             this.InitializeComponent();
 
-            this.InitializeInputTextBoxes();
-
             this.compiler = new TTRCompiler();
-        }
-
-        private void InitializeInputTextBoxes()
-        {
-            this.textBoxes = new InputTextBox[]
-            {
-                new InputTextBox(this.usingStatementsText, "Enter 'Using' statements here\r\n\r\nNote: If unchanged, this text will not be compiled"),
-                new InputTextBox(this.variablesText, "Declare you variables here\r\n\r\nNote: If unchanged, this text will not be compiled"),
-                new InputTextBox(this.initializationText, "Initialise your variables here\r\nInclude any other code that you don't want to be timed\r\n\r\nNote: If unchanged, this text will not be compiled"),
-                new InputTextBox(this.inputText, "Enter the code you want to be timed here\r\n\r\nNote: If unchanged, this text will not be compiled")
-            };
-
-            foreach (TextBox textBox in this.textBoxes.Select<InputTextBox, TextBox>(itb => itb.TextBox))
-            {
-                textBox.Text = this.GetDefaultText(textBox);
-                textBox.GotFocus += this.InputText_GotFocus;
-                textBox.LostFocus += this.InputText_LostFocus;
-            }
+            this.codeRunner = new TTRCodeRunner();
         }
 
         #endregion
 
         public void OnApplicationExit(object sender, EventArgs e)
         {
-            Directory.Delete(TTRCompiler.AssemblyOutputPath, true);
+            if (Directory.Exists(TTRCompiler.AssemblyOutputPath))
+            {
+                Directory.Delete(TTRCompiler.AssemblyOutputPath, true);
+            }            
         }
 
         #region Get and Set text boxes
 
-        private string GetCompilableString()
+        private TempCodeSnippet GetCurrentTempCodeSnippet()
         {
-            CompilableString compilableString =  new CompilableString(this.GetCompilableString(this.usingStatementsText),
-                                                                      this.GetCompilableString(this.variablesText),
-                                                                      this.GetCompilableString(this.usingStatementsText),
-                                                                      this.GetCompilableString(this.usingStatementsText));
-            return compilableString.ToString();
+            TempCodeSnippet codeSnippet = new TempCodeSnippet(this.GetCurrentCodeSnippet());
+
+            return codeSnippet;
         }
 
-        private string GetCompilableString(TextBox textBox)
+        private CodeSnippet GetCurrentCodeSnippet()
         {
-            return (!this.ContainsDefaultText(textBox)) ? textBox.Text : string.Empty;
+            CodeSnippet currentSnippet = new CodeSnippet()
+                {
+                    CodeName = this.inputTextCodeName.GetText(false),
+                    UsingStatements = this.inputTextUsingStatements.GetText(false),
+                    VariableDeclarations = this.inputTextVarDeclaration.GetText(false),
+                    VariableInitialization = this.inputTextVarInitialization.GetText(false),
+                    CodeToTime= this.inputTextCodeToTime.GetText(false)
+                };
+
+            return currentSnippet;
         }
 
-        private bool ContainsDefaultText(TextBox textBox)
+        private void SetCurrentCodeSnippet(CodeSnippet codeSnippet)
         {
-            return textBox.Text == this.GetDefaultText(textBox);
-        }
-
-        private string GetDefaultText(TextBox textBox)
-        {
-            try
-            {
-                return textBoxes.Where<InputTextBox>(tb => tb == textBox).First().DefaultText;
-            }
-            catch (InvalidOperationException ex)
-            {
-                //this should never happen
-                return string.Empty;
-            }
+            this.inputTextCodeName.SetText(codeSnippet.CodeName);
+            this.inputTextUsingStatements.SetText(codeSnippet.UsingStatements);
+            this.inputTextVarDeclaration.SetText(codeSnippet.VariableDeclarations);
+            this.inputTextVarInitialization.SetText(codeSnippet.VariableInitialization);
+            this.inputTextCodeToTime.SetText(codeSnippet.CodeToTime);
         }
 
         #endregion
@@ -94,13 +81,15 @@
 
         private void CompileButton_Click(object sender, EventArgs e)
         {
-            var sourceCode = this.GetCompilableString();
+            var codeSnippet = this.GetCurrentTempCodeSnippet();
 
-            var results = this.compiler.Compile(sourceCode);
+            var results = this.compiler.Compile(codeSnippet);
 
-            this.sourceCodeText.Text = sourceCode;
+            this.CreatedDllList.Add(results.PathToAssembly);
 
-            this.compiler.CompileReport(results);
+            this.sourceCodeText.Text = codeSnippet.AsCompilableString();
+
+            Log.Instance.Add(results.GetCompilationReport());
 
             this.UpdateOutputLog();
         }
@@ -108,35 +97,11 @@
 
         private void RunButton_Click(object sender, EventArgs e)
         {
-            new TTRCodeRunner().TimeLastCompilation();
+            this.codeRunner.TimeExecution(CreatedDllList.Last());
 
             this.UpdateOutputLog();
         }
         
-        private void InputText_GotFocus(object sender, EventArgs e)
-        {
-            TextBox textBox = sender as TextBox;
-
-            if (textBox is TextBox
-                && this.ContainsDefaultText(textBox))
-            {
-                textBox.Text = string.Empty;
-                textBox.ForeColor = Color.Black;
-            }
-        }
-
-        private void InputText_LostFocus(object sender, EventArgs e)
-        {
-            TextBox textBox = sender as TextBox;
-
-            if (textBox != null
-                && string.IsNullOrWhiteSpace(textBox.Text))
-            {
-                textBox.Text = this.GetDefaultText(textBox);
-                textBox.ForeColor = Color.Gray;
-            }
-        }
-
         #endregion
 
         private void UpdateOutputLog()
@@ -152,6 +117,5 @@
 
             this.OutputText.Text = output.ToString();
         }
-
     }
 }

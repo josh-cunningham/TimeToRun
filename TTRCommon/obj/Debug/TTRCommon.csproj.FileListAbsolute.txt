@@ -1,0 +1,4 @@
+C:\Users\Josh\Development\github\TimeToRun\TTRCommon\bin\Debug\TTRCommon.dll
+C:\Users\Josh\Development\github\TimeToRun\TTRCommon\bin\Debug\TTRCommon.pdb
+C:\Users\Josh\Development\github\TimeToRun\TTRCommon\obj\Debug\TTRCommon.dll
+C:\Users\Josh\Development\github\TimeToRun\TTRCommon\obj\Debug\TTRCommon.pdb

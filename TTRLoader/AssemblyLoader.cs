@@ -1,20 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-
-namespace TTRLoader
+﻿namespace TTR.Loader
 {
-    public class Loader : MarshalByRefObject
+    using System;
+    using System.Diagnostics;
+    using System.IO;
+    using System.Linq;
+    using System.Reflection;
+
+    public class AssemblyLoader : MarshalByRefObject
     {
+        //execution time in milliseconds
         public long timeToRun = -1;
 
         public Assembly testAssembly;
     
         public void LoadAssembly(string fullAssemblyName)
         {
+            //set this first so if anything goes wrong at any time a wrong time cannot be returned
+            timeToRun = -1;
+
             Assembly assembly = Assembly.ReflectionOnlyLoadFrom(fullAssemblyName);
 
             AssemblyName[] referencedAssemblies = assembly.GetReferencedAssemblies();
@@ -34,7 +37,7 @@ namespace TTRLoader
 
         public void TimeCode()
         {
-            Module module = testAssembly.GetModule("TestNamespace0.dll");
+            Module module = testAssembly.Modules.First();
 
             Type testType = null;
             MethodInfo initializeMethodInfo = null;

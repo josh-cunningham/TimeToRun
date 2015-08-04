@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TimeToRun
+namespace TTR
 {
     static class Program
     {

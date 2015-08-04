@@ -45,7 +45,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Log.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="TimeToRun.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -54,23 +58,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TTRCodeRunner.cs" />
-    <Compile Include="TTRCompiler.cs" />
-    <Compile Include="TTRExtensionMethods.cs" />
-    <Compile Include="Types\CompilableString.cs" />
-    <Compile Include="Types\InputTextbox.cs" />
+    <Compile Include="TimeToRun_ToolStripPartial.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <EmbeddedResource Include="TimeToRun.resx">
       <DependentUpon>TimeToRun.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -85,10 +83,32 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TTRCode\TTRCode.csproj">
+      <Project>{b9808beb-5b7d-47a7-aa7e-f56849ddbf6d}</Project>
+      <Name>TTRCode</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TTRCommon\TTRCommon.csproj">
+      <Project>{cfc29713-e25e-4e56-bf13-b03e9b08399d}</Project>
+      <Name>TTRCommon</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TTRLoader\TTRLoader.csproj">
       <Project>{0783c046-b365-4c80-8fd2-d533955f74a9}</Project>
       <Name>TTRLoader</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TTRLogging\TTRLogging.csproj">
+      <Project>{cecd3cd5-30b1-4c62-9cac-21153c598ddd}</Project>
+      <Name>TTRLogging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TTRUserControls\TTRUserControls.csproj">
+      <Project>{26b72941-e21a-40c4-838d-2b01a9e4825d}</Project>
+      <Name>TTRUserControls</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SymbolEdit.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SymbolAccept.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

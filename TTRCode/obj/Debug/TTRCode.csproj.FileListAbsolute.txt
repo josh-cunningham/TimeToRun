@@ -1,0 +1,9 @@
+C:\Users\Josh\Development\github\TimeToRun\TTRCode\obj\Debug\TTRCode.csprojResolveAssemblyReference.cache
+C:\Users\Josh\Development\github\TimeToRun\TTRCode\bin\Debug\TTRCode.dll
+C:\Users\Josh\Development\github\TimeToRun\TTRCode\bin\Debug\TTRCode.pdb
+C:\Users\Josh\Development\github\TimeToRun\TTRCode\bin\Debug\TTRLoader.dll
+C:\Users\Josh\Development\github\TimeToRun\TTRCode\bin\Debug\TTRLogging.dll
+C:\Users\Josh\Development\github\TimeToRun\TTRCode\bin\Debug\TTRLoader.pdb
+C:\Users\Josh\Development\github\TimeToRun\TTRCode\bin\Debug\TTRLogging.pdb
+C:\Users\Josh\Development\github\TimeToRun\TTRCode\obj\Debug\TTRCode.dll
+C:\Users\Josh\Development\github\TimeToRun\TTRCode\obj\Debug\TTRCode.pdb
