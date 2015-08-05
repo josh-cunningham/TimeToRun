@@ -2,10 +2,12 @@
 {
     using System;
     using System.IO;
+    using System.Reflection;
     using System.Runtime.Serialization.Formatters.Binary;
     using System.Text;
     using System.Windows.Forms;
     using System.Xml.Serialization;
+    using TTR.Common;
 
     [Serializable]
     public class CodeSnippet
@@ -117,7 +119,7 @@
 
         public void SaveAs(string filename)
         {
-            string path = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "TTRCode", filename + ".ttrx");
+            string path = Path.Combine(TTRPath.SavedCodePath, filename + ".ttrx");
 
             using (FileStream fs = new FileStream(path, FileMode.Create))
             {

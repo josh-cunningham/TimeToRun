@@ -35,9 +35,9 @@
 
         public void OnApplicationExit(object sender, EventArgs e)
         {
-            if (Directory.Exists(TTRCompiler.AssemblyOutputPath))
+            if (Directory.Exists(TTRPath.AssemblyOutputPath))
             {
-                Directory.Delete(TTRCompiler.AssemblyOutputPath, true);
+                Directory.Delete(TTRPath.AssemblyOutputPath, true);
             }            
         }
 

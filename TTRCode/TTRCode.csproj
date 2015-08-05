@@ -48,6 +48,10 @@
     <Compile Include="TTRCompilerParameters.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TTRCommon\TTRCommon.csproj">
+      <Project>{cfc29713-e25e-4e56-bf13-b03e9b08399d}</Project>
+      <Name>TTRCommon</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TTRLoader\TTRLoader.csproj">
       <Project>{0783c046-b365-4c80-8fd2-d533955f74a9}</Project>
       <Name>TTRLoader</Name>

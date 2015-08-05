@@ -2,6 +2,7 @@
 {
     using System.CodeDom.Compiler;
     using System.IO;
+    using TTR.Common;
 
     public class TTRCompilerParameters : CompilerParameters
     {
@@ -12,7 +13,7 @@
             this.GenerateExecutable = false;
             this.CompilerOptions = "/optimize";
 
-            this.SetTTROutputAssembly("TTR_defaultTempAssemblyName.dll");
+            this.SetTTROutputAssembly("TTR_defaultTempAssemblyName");
 
             this.ReferencedAssemblies.Add("mscorlib.dll");
             this.ReferencedAssemblies.Add("System.dll");
@@ -20,16 +21,7 @@
 
         public void SetTTROutputAssembly(string assemblyOutputName)
         {
-            bool hasDllExtension = false; //ADD REGEX HERE
-
-            if (hasDllExtension)
-            {
-                this.OutputAssembly = Path.Combine(TTRCompiler.AssemblyOutputPath, assemblyOutputName);
-            }
-            else
-            {
-                this.OutputAssembly = Path.Combine(TTRCompiler.AssemblyOutputPath, assemblyOutputName + ".dll");
-            }
+            this.OutputAssembly = Path.Combine(TTRPath.AssemblyOutputPath, assemblyOutputName);
         }
     }
 }

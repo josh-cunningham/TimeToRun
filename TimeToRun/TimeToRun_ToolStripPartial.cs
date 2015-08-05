@@ -1,7 +1,9 @@
 ﻿namespace TTR
 {
     using System;
+    using System.IO;
     using TTR.Code;
+    using TTR.Common;
 
     /// <summary>
     /// TimeToRun_ToolStripPartial
@@ -21,7 +23,7 @@
 
         private void waitCalibrationStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.SetCurrentCodeSnippet(CodeSnippet.Load(System.IO.Path.Combine(@"C:\Users\Josh\Development\github\TimeToRun\TimeToRun\bin\Debug\TTRCode\Examples", "WaitUntil.ttrx")));
+            this.SetCurrentCodeSnippet(CodeSnippet.Load(Path.Combine(TTRPath.ExampleCodePath, "WaitUntil.ttrx")));
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
@@ -45,7 +47,7 @@
 
         private void quickLoadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.SetCurrentCodeSnippet(CodeSnippet.Load(System.IO.Path.Combine(@"C:\Users\Josh\Development\github\TimeToRun\TimeToRun\bin\Debug\TTRCode", "TTRQuickSave.ttrx")));
+            this.SetCurrentCodeSnippet(CodeSnippet.Load(Path.Combine(TTRPath.SavedCodePath, "TTRQuickSave.ttrx")));
         }
 
         private void quickSaveToolStripMenuItem_Click(object sender, EventArgs e)

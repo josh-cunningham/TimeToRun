@@ -11,32 +11,17 @@
     using System.Reflection;
     using System.Security.Policy;
     using System.Text;
+    using TTR.Common;
 
     public class TTRCompiler
     {
         private readonly string baseFilename = "TestNamespace";
 
-        private static string assemblyOutputPath;
-
-        public static string AssemblyOutputPath
-        {
-            get
-            {
-                if (assemblyOutputPath == null)
-                {
-                    string startupPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-
-                    assemblyOutputPath = Path.Combine(startupPath, "TTRCompilations");
-                }
-                return assemblyOutputPath;
-            }
-        }
-
         public TTRCompiler()
         {
-            if (!Directory.Exists(AssemblyOutputPath))
+            if (!Directory.Exists(TTRPath.AssemblyOutputPath))
             {
-                Directory.CreateDirectory(AssemblyOutputPath);
+                Directory.CreateDirectory(TTRPath.AssemblyOutputPath);
             }
         }
 
