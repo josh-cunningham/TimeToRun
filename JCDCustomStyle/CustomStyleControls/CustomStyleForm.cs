@@ -1,4 +1,4 @@
-﻿namespace JCDCustomStyle
+﻿namespace JCDCustomStyle.CustomStyleControls
 {
     using System.Windows.Forms;
 

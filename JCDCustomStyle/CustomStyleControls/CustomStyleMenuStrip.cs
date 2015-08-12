@@ -1,8 +1,8 @@
-﻿namespace JCDCustomStyle
+﻿namespace JCDCustomStyle.CustomStyleControls
 {
     using System.Windows.Forms;
 
-    public partial class CustomStyleMenuStrip : MenuStrip, ICustomStyleControl
+    public class CustomStyleMenuStrip : MenuStrip, ICustomStyleControl
     {
         public CustomStyleMenuStrip()
         {

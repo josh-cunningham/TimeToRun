@@ -1,5 +1,7 @@
 ﻿namespace TTR.UserControls
 {
+    using JCDCustomStyle.UserControls;
+
     public class CodeInputText : InputTextBox
     {
         protected override string GetDefaultText()

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace TTR.UserControls
 {
-    using JCDCustomStyle;
+    using JCDCustomStyle.CustomStyleControls;
 
     public partial class TTRMenu : CustomStyleMenuStrip
     {

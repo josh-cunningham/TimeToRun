@@ -1,6 +1,6 @@
 ﻿namespace TTR.UserControls
 {
-    using JCDCustomStyle;
+    using JCDCustomStyle.CustomStyleControls;
 
     public class TTRForm : CustomStyleForm
     {

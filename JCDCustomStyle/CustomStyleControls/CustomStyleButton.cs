@@ -1,8 +1,8 @@
-﻿namespace JCDCustomStyle
+﻿namespace JCDCustomStyle.CustomStyleControls
 {
     using System.Windows.Forms;
 
-    public partial class CustomStyleButton : Button, ICustomStyleControl
+    public class CustomStyleButton : Button, ICustomStyleControl
     {
         public CustomStyleButton()
         {

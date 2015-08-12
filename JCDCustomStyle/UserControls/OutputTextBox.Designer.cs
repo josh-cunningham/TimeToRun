@@ -1,6 +1,6 @@
-﻿namespace TTR.UserControls
+﻿namespace JCDCustomStyle.UserControls
 {
-    partial class InputTextBox
+    partial class OutputTextBox
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,27 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textInput = new System.Windows.Forms.TextBox();
+            this.textOutput = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // textInput
+            // textOutput
             // 
-            this.textInput.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textInput.Font = new System.Drawing.Font("Lucida Console", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textInput.Location = new System.Drawing.Point(0, 0);
-            this.textInput.Multiline = true;
-            this.textInput.Name = "textInput";
-            this.textInput.Size = new System.Drawing.Size(256, 21);
-            this.textInput.TabIndex = 0;
+            this.textOutput.BackColor = System.Drawing.SystemColors.Control;
+            this.textOutput.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textOutput.Location = new System.Drawing.Point(0, 0);
+            this.textOutput.Multiline = true;
+            this.textOutput.Name = "textOutput";
+            this.textOutput.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.textOutput.Size = new System.Drawing.Size(406, 192);
+            this.textOutput.TabIndex = 2;
             // 
-            // InputTextBox
+            // OutputTextBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.Controls.Add(this.textInput);
-            this.Name = "InputTextBox";
-            this.Size = new System.Drawing.Size(256, 21);
+            this.Controls.Add(this.textOutput);
+            this.Name = "OutputTextBox";
+            this.Size = new System.Drawing.Size(406, 192);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -56,6 +56,6 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textInput;
+        private System.Windows.Forms.TextBox textOutput;
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace TTR.UserControls
+﻿namespace JCDCustomStyle.UserControls
 {
     using System;
     using System.Drawing;

@@ -3,5 +3,7 @@ C:\Users\Josh\Development\github\TimeToRun\JCDCustomStyle\bin\Debug\JCDCustomSty
 C:\Users\Josh\Development\github\TimeToRun\JCDCustomStyle\obj\Debug\JCDCustomStyle.csprojResolveAssemblyReference.cache
 C:\Users\Josh\Development\github\TimeToRun\JCDCustomStyle\obj\Debug\JCDCustomStyle.dll
 C:\Users\Josh\Development\github\TimeToRun\JCDCustomStyle\obj\Debug\JCDCustomStyle.pdb
-C:\Users\Josh\Development\github\TimeToRun\JCDCustomStyle\obj\Debug\JCDCustomStyle.CustomStyleButton.resources
 C:\Users\Josh\Development\github\TimeToRun\JCDCustomStyle\obj\Debug\JCDCustomStyle.csproj.GenerateResource.Cache
+C:\Users\Josh\Development\github\TimeToRun\JCDCustomStyle\obj\Debug\JCDCustomStyle.CustomStyleControls.CustomStyleButton.resources
+C:\Users\Josh\Development\github\TimeToRun\JCDCustomStyle\obj\Debug\JCDCustomStyle.UserControls.OutputTextBox.resources
+C:\Users\Josh\Development\github\TimeToRun\JCDCustomStyle\obj\Debug\JCDCustomStyle.UserControls.InputTextBox.resources

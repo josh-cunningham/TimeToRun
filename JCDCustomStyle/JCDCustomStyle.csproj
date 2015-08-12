@@ -41,12 +41,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomStyleControls\CustomStyleTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UserControls\InputTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\InputTextBox.Designer.cs">
+      <DependentUpon>InputTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\OutputTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\OutputTextBox.Designer.cs">
+      <DependentUpon>OutputTextBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utility\ControlMover.cs" />
     <Compile Include="CustomStyleControls\CustomStyleButton.cs">
       <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="CustomStyleControls\CustomStyleButton.Designer.cs">
-      <DependentUpon>CustomStyleButton.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomStyleColorTable.cs" />
     <Compile Include="CustomStyleColorTable_DefaultsPartial.cs" />
@@ -56,9 +68,6 @@
     <Compile Include="CustomStyleManager.cs" />
     <Compile Include="CustomStyleControls\CustomStyleMenuStrip.cs">
       <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="CustomStyleControls\CustomStyleMenuStrip.Designer.cs">
-      <DependentUpon>CustomStyleMenuStrip.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomStyleControls\CustomStyleToolStrip.cs">
       <SubType>Component</SubType>
@@ -70,7 +79,14 @@
     <EmbeddedResource Include="CustomStyleControls\CustomStyleButton.resx">
       <DependentUpon>CustomStyleButton.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\InputTextBox.resx">
+      <DependentUpon>InputTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\OutputTextBox.resx">
+      <DependentUpon>OutputTextBox.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

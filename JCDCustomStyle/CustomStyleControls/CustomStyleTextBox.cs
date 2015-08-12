@@ -2,9 +2,9 @@
 {
     using System.Windows.Forms;
 
-    public class CustomStyleToolStrip : ToolStrip, ICustomStyleControl
+    public class CustomStyleTextBox : TextBox, ICustomStyleControl
     {
-        public CustomStyleToolStrip()
+        public CustomStyleTextBox()
         {
             CustomStyleManager.Instance.RegisterControl(this);
         }

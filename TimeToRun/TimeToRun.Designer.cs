@@ -28,22 +28,58 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.textOutput = new JCDCustomStyle.UserControls.OutputTextBox();
+            this.runButton = new JCDCustomStyle.CustomStyleControls.CustomStyleButton();
+            this.compileButton = new JCDCustomStyle.CustomStyleControls.CustomStyleButton();
+            this.ttrUserMenuStrip = new TTR.UserControls.TTRUserMenuStrip();
             this.ttrTool = new TTR.UserControls.TTRTool();
-            this.inputTextCodeName = new TTR.UserControls.InputTextBox();
+            this.inputTextCodeName = new JCDCustomStyle.UserControls.InputTextBox();
             this.splitter1 = new System.Windows.Forms.Splitter();
-            this.OutputText = new System.Windows.Forms.TextBox();
             this.initializationGroupBox = new System.Windows.Forms.GroupBox();
             this.inputTextVarDeclaration = new TTR.UserControls.CodeInputText();
             this.inputTextVarInitialization = new TTR.UserControls.CodeInputText();
             this.inputTextUsingStatements = new TTR.UserControls.CodeInputText();
             this.codeToTimeGroupBox = new System.Windows.Forms.GroupBox();
             this.inputTextCodeToTime = new TTR.UserControls.CodeInputText();
-            this.ttrUserMenuStrip = new TTR.UserControls.TTRUserMenuStrip();
-            this.compileButton = new JCDCustomStyle.CustomStyleButton();
-            this.runButton = new JCDCustomStyle.CustomStyleButton();
             this.initializationGroupBox.SuspendLayout();
             this.codeToTimeGroupBox.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // textOutput
+            // 
+            this.textOutput.Location = new System.Drawing.Point(108, 329);
+            this.textOutput.Name = "textOutput";
+            this.textOutput.Size = new System.Drawing.Size(512, 108);
+            this.textOutput.TabIndex = 18;
+            this.textOutput.Enabled = true;
+            // 
+            // runButton
+            // 
+            this.runButton.Location = new System.Drawing.Point(9, 386);
+            this.runButton.Name = "runButton";
+            this.runButton.Size = new System.Drawing.Size(93, 51);
+            this.runButton.TabIndex = 17;
+            this.runButton.Text = "Run";
+            this.runButton.UseVisualStyleBackColor = true;
+            this.runButton.Click += new System.EventHandler(this.RunButton_Click);
+            // 
+            // compileButton
+            // 
+            this.compileButton.Location = new System.Drawing.Point(9, 329);
+            this.compileButton.Name = "compileButton";
+            this.compileButton.Size = new System.Drawing.Size(93, 51);
+            this.compileButton.TabIndex = 16;
+            this.compileButton.Text = "Compile";
+            this.compileButton.UseVisualStyleBackColor = true;
+            this.compileButton.Click += new System.EventHandler(this.CompileButton_Click);
+            // 
+            // ttrUserMenuStrip
+            // 
+            this.ttrUserMenuStrip.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ttrUserMenuStrip.Location = new System.Drawing.Point(3, 0);
+            this.ttrUserMenuStrip.Name = "ttrUserMenuStrip";
+            this.ttrUserMenuStrip.Size = new System.Drawing.Size(630, 24);
+            this.ttrUserMenuStrip.TabIndex = 15;
             // 
             // ttrTool
             // 
@@ -70,17 +106,6 @@
             this.splitter1.Size = new System.Drawing.Size(3, 469);
             this.splitter1.TabIndex = 8;
             this.splitter1.TabStop = false;
-            // 
-            // OutputText
-            // 
-            this.OutputText.BackColor = System.Drawing.SystemColors.Control;
-            this.OutputText.Enabled = false;
-            this.OutputText.Location = new System.Drawing.Point(108, 329);
-            this.OutputText.Multiline = true;
-            this.OutputText.Name = "OutputText";
-            this.OutputText.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.OutputText.Size = new System.Drawing.Size(518, 108);
-            this.OutputText.TabIndex = 1;
             // 
             // initializationGroupBox
             // 
@@ -140,46 +165,18 @@
             this.inputTextCodeToTime.Size = new System.Drawing.Size(354, 242);
             this.inputTextCodeToTime.TabIndex = 18;
             // 
-            // ttrUserMenuStrip
-            // 
-            this.ttrUserMenuStrip.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ttrUserMenuStrip.Location = new System.Drawing.Point(3, 0);
-            this.ttrUserMenuStrip.Name = "ttrUserMenuStrip";
-            this.ttrUserMenuStrip.Size = new System.Drawing.Size(630, 24);
-            this.ttrUserMenuStrip.TabIndex = 15;
-            // 
-            // compileButton
-            // 
-            this.compileButton.Location = new System.Drawing.Point(9, 329);
-            this.compileButton.Name = "compileButton";
-            this.compileButton.Size = new System.Drawing.Size(93, 51);
-            this.compileButton.TabIndex = 16;
-            this.compileButton.Text = "Compile";
-            this.compileButton.UseVisualStyleBackColor = true;
-            this.compileButton.Click += new System.EventHandler(this.CompileButton_Click);
-            // 
-            // runButton
-            // 
-            this.runButton.Location = new System.Drawing.Point(9, 386);
-            this.runButton.Name = "runButton";
-            this.runButton.Size = new System.Drawing.Size(93, 51);
-            this.runButton.TabIndex = 17;
-            this.runButton.Text = "Run";
-            this.runButton.UseVisualStyleBackColor = true;
-            this.runButton.Click += new System.EventHandler(this.RunButton_Click);
-            // 
             // TimeToRun
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(633, 469);
+            this.Controls.Add(this.textOutput);
             this.Controls.Add(this.runButton);
             this.Controls.Add(this.compileButton);
             this.Controls.Add(this.ttrUserMenuStrip);
             this.Controls.Add(this.ttrTool);
             this.Controls.Add(this.inputTextCodeName);
             this.Controls.Add(this.splitter1);
-            this.Controls.Add(this.OutputText);
             this.Controls.Add(this.initializationGroupBox);
             this.Controls.Add(this.codeToTimeGroupBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -194,19 +191,19 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox OutputText;
         private System.Windows.Forms.GroupBox codeToTimeGroupBox;
         private System.Windows.Forms.GroupBox initializationGroupBox;
         private System.Windows.Forms.Splitter splitter1;
-        private TTR.UserControls.InputTextBox inputTextCodeName;
+        private JCDCustomStyle.UserControls.InputTextBox inputTextCodeName;
         private TTR.UserControls.CodeInputText inputTextUsingStatements;
         private TTR.UserControls.CodeInputText inputTextCodeToTime;
         private TTR.UserControls.CodeInputText inputTextVarDeclaration;
         private TTR.UserControls.CodeInputText inputTextVarInitialization;
         private UserControls.TTRTool ttrTool;
         private UserControls.TTRUserMenuStrip ttrUserMenuStrip;
-        private JCDCustomStyle.CustomStyleButton compileButton;
-        private JCDCustomStyle.CustomStyleButton runButton;
+        private JCDCustomStyle.CustomStyleControls.CustomStyleButton compileButton;
+        private JCDCustomStyle.CustomStyleControls.CustomStyleButton runButton;
+        private JCDCustomStyle.UserControls.OutputTextBox textOutput;
     }
 }
 

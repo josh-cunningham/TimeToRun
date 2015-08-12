@@ -1,6 +1,8 @@
 ﻿namespace TTR
 {
     using JCDCustomStyle;
+    using JCDCustomStyle.UserControls;
+    using JCDCustomStyle.CustomStyleControls;
     using System;
     using System.Collections.Generic;
     using System.Drawing;
@@ -127,16 +129,9 @@
 
         private void UpdateOutputLog()
         {
-            StringBuilder output = new StringBuilder(this.OutputText.Text);
-
-            foreach (string message in Log.Instance.GetMessages())
-            {
-                output.AppendLine(message);
-            }
+            this.textOutput.AppendText(Log.Instance.GetMessages());
 
             Log.Instance.Clear();
-
-            this.OutputText.Text = output.ToString();
         }
     }
 }

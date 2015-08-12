@@ -14,7 +14,6 @@ C:\Users\Josh\Development\github\TimeToRun\TimeToRun\bin\Debug\TTRCommon.dll
 C:\Users\Josh\Development\github\TimeToRun\TimeToRun\bin\Debug\TTRCode.pdb
 C:\Users\Josh\Development\github\TimeToRun\TimeToRun\bin\Debug\TTRCommon.pdb
 C:\Users\Josh\Development\github\TimeToRun\TimeToRun\obj\Debug\TTR.Properties.Resources.resources
-C:\Users\Josh\Development\github\TimeToRun\TimeToRun\obj\Debug\TTR.UserControls.InputTextBox.resources
 C:\Users\Josh\Development\github\TimeToRun\TimeToRun\obj\Debug\TTR.UserControls.TTRMenu.resources
 C:\Users\Josh\Development\github\TimeToRun\TimeToRun\bin\Debug\JCDCustomStyle.dll
 C:\Users\Josh\Development\github\TimeToRun\TimeToRun\bin\Debug\JCDCustomStyle.pdb

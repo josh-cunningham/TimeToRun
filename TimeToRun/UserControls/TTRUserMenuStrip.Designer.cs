@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.exitXButton = new JCDCustomStyle.CustomStyleButton();
+            this.exitXButton = new JCDCustomStyle.CustomStyleControls.CustomStyleButton();
             this.ttrMenu = new TTR.UserControls.TTRMenu();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,7 +45,7 @@
             this.styleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.darkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.minimiseButton = new JCDCustomStyle.CustomStyleButton();
+            this.minimiseButton = new JCDCustomStyle.CustomStyleControls.CustomStyleButton();
             this.ttrMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -222,7 +222,7 @@
         private System.Windows.Forms.ToolStripMenuItem styleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem lightToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem darkToolStripMenuItem;
-        private JCDCustomStyle.CustomStyleButton exitXButton;
+        private JCDCustomStyle.CustomStyleControls.CustomStyleButton exitXButton;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
@@ -231,6 +231,6 @@
         private System.Windows.Forms.ToolStripMenuItem quickLoadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quickSaveToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private JCDCustomStyle.CustomStyleButton minimiseButton;
+        private JCDCustomStyle.CustomStyleControls.CustomStyleButton minimiseButton;
     }
 }

@@ -70,12 +70,6 @@
     <Compile Include="UserControls\TTRControls\CodeInputText.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\TTRControls\InputTextBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControls\TTRControls\InputTextBox.Designer.cs">
-      <DependentUpon>InputTextBox.cs</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\TTRControls\TTRForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,9 +98,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\TTRControls\InputTextBox.resx">
-      <DependentUpon>InputTextBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\TTRControls\TTRMenu.resx">
       <DependentUpon>TTRMenu.cs</DependentUpon>
