@@ -7,7 +7,7 @@
     <ProjectGuid>{DE42A6FC-087B-4526-9DFF-B984F45832AE}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TimeToRun</RootNamespace>
+    <RootNamespace>TTR</RootNamespace>
     <AssemblyName>TimeToRun</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -45,10 +45,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ICodeSnippetTextSet.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="TimeToRun.cs">
       <SubType>Form</SubType>
@@ -61,6 +67,36 @@
     <Compile Include="TimeToRun_ToolStripPartial.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="UserControls\TTRControls\CodeInputText.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\TTRControls\InputTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\TTRControls\InputTextBox.Designer.cs">
+      <DependentUpon>InputTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TTRControls\TTRForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserControls\TTRControls\TTRMenu.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UserControls\TTRControls\TTRMenu.Designer.cs">
+      <DependentUpon>TTRMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TTRControls\TTRTool.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UserControls\TTRControls\TTRTool.Designer.cs">
+      <DependentUpon>TTRTool.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TTRUserMenuStrip.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\TTRUserMenuStrip.Designer.cs">
+      <DependentUpon>TTRUserMenuStrip.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="TimeToRun.resx">
       <DependentUpon>TimeToRun.cs</DependentUpon>
     </EmbeddedResource>
@@ -69,20 +105,29 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\TTRControls\InputTextBox.resx">
+      <DependentUpon>InputTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\TTRControls\TTRMenu.resx">
+      <DependentUpon>TTRMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\TTRUserMenuStrip.resx">
+      <DependentUpon>TTRUserMenuStrip.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <LastGenOutput>Settings1.Designer.cs</LastGenOutput>
     </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\JCDCustomStyle\JCDCustomStyle.csproj">
+      <Project>{64baee24-d56a-475e-bb36-8d20a562bd59}</Project>
+      <Name>JCDCustomStyle</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TTRCode\TTRCode.csproj">
       <Project>{b9808beb-5b7d-47a7-aa7e-f56849ddbf6d}</Project>
       <Name>TTRCode</Name>
@@ -99,10 +144,6 @@
       <Project>{cecd3cd5-30b1-4c62-9cac-21153c598ddd}</Project>
       <Name>TTRLogging</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TTRUserControls\TTRUserControls.csproj">
-      <Project>{26b72941-e21a-40c4-838d-2b01a9e4825d}</Project>
-      <Name>TTRUserControls</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="SymbolEdit.gif" />
@@ -110,6 +151,7 @@
   <ItemGroup>
     <None Include="SymbolAccept.gif" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

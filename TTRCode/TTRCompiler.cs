@@ -4,19 +4,11 @@
     using System;
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
-    using System.Configuration;
     using System.IO;
-    using System.Linq;
-    using System.Linq.Expressions;
-    using System.Reflection;
-    using System.Security.Policy;
-    using System.Text;
     using TTR.Common;
 
     public class TTRCompiler
     {
-        private readonly string baseFilename = "TestNamespace";
-
         public TTRCompiler()
         {
             if (!Directory.Exists(TTRPath.AssemblyOutputPath))

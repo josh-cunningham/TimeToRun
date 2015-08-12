@@ -1,14 +1,11 @@
 C:\Users\Josh\Development\github\TimeToRun\TimeToRun\bin\Debug\TimeToRun.exe.config
 C:\Users\Josh\Development\github\TimeToRun\TimeToRun\bin\Debug\TimeToRun.exe
 C:\Users\Josh\Development\github\TimeToRun\TimeToRun\bin\Debug\TimeToRun.pdb
-C:\Users\Josh\Development\github\TimeToRun\TimeToRun\obj\Debug\TimeToRun.Properties.Resources.resources
 C:\Users\Josh\Development\github\TimeToRun\TimeToRun\obj\Debug\TimeToRun.csproj.GenerateResource.Cache
 C:\Users\Josh\Development\github\TimeToRun\TimeToRun\obj\Debug\TimeToRun.exe
 C:\Users\Josh\Development\github\TimeToRun\TimeToRun\obj\Debug\TimeToRun.pdb
 C:\Users\Josh\Development\github\TimeToRun\TimeToRun\obj\Debug\TimeToRun.csprojResolveAssemblyReference.cache
 C:\Users\Josh\Development\github\TimeToRun\TimeToRun\bin\Debug\TTRLoader.pdb
-C:\Users\Josh\Development\github\TimeToRun\TimeToRun\bin\Debug\TTRUserControls.dll
-C:\Users\Josh\Development\github\TimeToRun\TimeToRun\bin\Debug\TTRUserControls.pdb
 C:\Users\Josh\Development\github\TimeToRun\TimeToRun\bin\Debug\TTRLogging.dll
 C:\Users\Josh\Development\github\TimeToRun\TimeToRun\bin\Debug\TTRLogging.pdb
 C:\Users\Josh\Development\github\TimeToRun\TimeToRun\obj\Debug\TTR.TimeToRun.resources
@@ -16,3 +13,9 @@ C:\Users\Josh\Development\github\TimeToRun\TimeToRun\bin\Debug\TTRCode.dll
 C:\Users\Josh\Development\github\TimeToRun\TimeToRun\bin\Debug\TTRCommon.dll
 C:\Users\Josh\Development\github\TimeToRun\TimeToRun\bin\Debug\TTRCode.pdb
 C:\Users\Josh\Development\github\TimeToRun\TimeToRun\bin\Debug\TTRCommon.pdb
+C:\Users\Josh\Development\github\TimeToRun\TimeToRun\obj\Debug\TTR.Properties.Resources.resources
+C:\Users\Josh\Development\github\TimeToRun\TimeToRun\obj\Debug\TTR.UserControls.InputTextBox.resources
+C:\Users\Josh\Development\github\TimeToRun\TimeToRun\obj\Debug\TTR.UserControls.TTRMenu.resources
+C:\Users\Josh\Development\github\TimeToRun\TimeToRun\bin\Debug\JCDCustomStyle.dll
+C:\Users\Josh\Development\github\TimeToRun\TimeToRun\bin\Debug\JCDCustomStyle.pdb
+C:\Users\Josh\Development\github\TimeToRun\TimeToRun\obj\Debug\TTR.UserControls.TTRUserMenuStrip.resources

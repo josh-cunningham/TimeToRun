@@ -1,0 +1,7 @@
+C:\Users\Josh\Development\github\TimeToRun\JCDCustomStyle\bin\Debug\JCDCustomStyle.dll
+C:\Users\Josh\Development\github\TimeToRun\JCDCustomStyle\bin\Debug\JCDCustomStyle.pdb
+C:\Users\Josh\Development\github\TimeToRun\JCDCustomStyle\obj\Debug\JCDCustomStyle.csprojResolveAssemblyReference.cache
+C:\Users\Josh\Development\github\TimeToRun\JCDCustomStyle\obj\Debug\JCDCustomStyle.dll
+C:\Users\Josh\Development\github\TimeToRun\JCDCustomStyle\obj\Debug\JCDCustomStyle.pdb
+C:\Users\Josh\Development\github\TimeToRun\JCDCustomStyle\obj\Debug\JCDCustomStyle.CustomStyleButton.resources
+C:\Users\Josh\Development\github\TimeToRun\JCDCustomStyle\obj\Debug\JCDCustomStyle.csproj.GenerateResource.Cache

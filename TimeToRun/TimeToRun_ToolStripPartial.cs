@@ -14,11 +14,7 @@
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.inputTextCodeName.SetToDefaultText();
-            this.inputTextUsingStatements.SetToDefaultText();
-            this.inputTextVarDeclaration.SetToDefaultText();
-            this.inputTextVarInitialization.SetToDefaultText();
-            this.inputTextCodeToTime.SetToDefaultText();
+            
         }
 
         private void waitCalibrationStripMenuItem_Click(object sender, EventArgs e)
