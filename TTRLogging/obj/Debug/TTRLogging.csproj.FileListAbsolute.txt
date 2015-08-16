@@ -2,3 +2,4 @@ C:\Users\Josh\Development\github\TimeToRun\TTRLogging\bin\Debug\TTRLogging.dll
 C:\Users\Josh\Development\github\TimeToRun\TTRLogging\bin\Debug\TTRLogging.pdb
 C:\Users\Josh\Development\github\TimeToRun\TTRLogging\obj\Debug\TTRLogging.dll
 C:\Users\Josh\Development\github\TimeToRun\TTRLogging\obj\Debug\TTRLogging.pdb
+C:\Users\Josh\Development\github\TimeToRun\TTRLogging\obj\Debug\TTRLogging.csprojResolveAssemblyReference.cache

@@ -36,16 +36,6 @@
             }
         }
 
-        public void ChangeStyle(CustomStyleDefaultEnum styleDefault)
-        {
-            var colorTable = new CustomStyleColorTable(styleDefault);
-
-            foreach (Control control in this.customControls)
-            {
-                SetControlStyle(control, colorTable);
-            }
-        }
-
         public static void SetControlStyle(Control control, CustomStyleColorTable colorTable)
         {
             if (colorTable.AllControlSettings != null)

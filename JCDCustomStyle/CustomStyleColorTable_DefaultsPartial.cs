@@ -5,7 +5,12 @@
 
     public partial class CustomStyleColorTable
     {
-        public CustomStyleColorTable(CustomStyleDefaultEnum styleDefault) :
+        public static implicit operator CustomStyleColorTable(CustomStyleDefaultEnum styleDefault)
+        {
+            return new CustomStyleColorTable(styleDefault);
+        }
+
+        private CustomStyleColorTable(CustomStyleDefaultEnum styleDefault) :
             this()
         {
             this.ButtonSettings = new ButtonStyle();
